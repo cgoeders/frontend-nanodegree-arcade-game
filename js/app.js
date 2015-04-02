@@ -43,7 +43,7 @@ var Enemy = function() {
     this.bottom = this.y + 101;
 
     //pick a speed for enemy
-    this.speed = getRandInt(10, 50);
+    this.speed = getRandInt(40, 120);
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -150,8 +150,13 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies
 
 var allEnemies = [];
-var enemy = new Enemy();
-allEnemies.push(enemy);
+
+
+for (var i=0; i < 8; i++) {
+    var enemy = new Enemy();
+    allEnemies.push(enemy);
+}
+
 
 
 // Place the player object in a variable called player
