@@ -57,19 +57,27 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    makeEnemy();
     this.x += this.speed * dt;
 
-    //handle collisions with player
+    //TODO: handle collisions with player
     checkCollisions();
+
+
+
+
+    //TODO: limit number of enemies generated per row
+
+
+    //TODO: create enemies if one doesn't already exist on line (easy mode)
+
+
+
 }
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
-
-
 
 /////////////////////////////////////////////////////////////////////////
 
@@ -142,13 +150,8 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies
 
 var allEnemies = [];
-var makeEnemy = function() {
-    //create new instance of Enemy
-    var enemy = new Enemy();
-
-    //add to allEnemies array
-    allEnemies.push(enemy);
-}
+var enemy = new Enemy();
+allEnemies.push(enemy);
 
 
 // Place the player object in a variable called player
