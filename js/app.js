@@ -153,7 +153,11 @@ Player.prototype.handleInput = function(key) {
             console.log(this.x, this.y);
         }
     } else if (key === 'up') {
-        if (this.y > 83) {
+        //TODO: check for collisions before restarting
+        if (this.y < 166) {
+            this.y -= 83;
+            this.restart();
+        } else if (this.y > 83) {
             console.log(this.x, this.y);
             this.y -= 83;
             console.log(this.x, this.y);
