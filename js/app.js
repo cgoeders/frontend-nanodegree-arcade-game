@@ -14,11 +14,12 @@ var checkCollisions = function() {
     });
 }
 
-var restart = function() {
-    //reset screen
-
+/*
+var createEnemy = function() {
+    var enemy = new Enemy();
+    allEnemies.push(enemy);
 }
-
+*/
 
 
 //////////////////////////////////////////////////////////////////////
@@ -33,14 +34,16 @@ var Enemy = function() {
     //choose one of three possible roads for enemy to patrol
     this.road = getRandInt(1, 3);
 
-    //set enemy (x,y) coordinates
-    this.x = 0;
+    //set enemy starting (x,y) coordinates
+    this.x = getRantInt(0, -202);
     this.y = this.road * 83;
 
+/*
     this.right = this.x + 83;
     this.left = this.x;
     this.top = this.y;
     this.bottom = this.y + 101;
+*/
 
     //pick a speed for enemy
     this.speed = getRandInt(40, 120);
@@ -48,8 +51,15 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+
 }
 
+/*
+Enemy.prototype.makeEnemy = function() {
+    var enemy = new Enemy();
+    allEnemies.push(enemy);
+}
+*/
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -57,6 +67,8 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    makeEnemy();
+
     this.x += this.speed * dt;
 
     //TODO: handle collisions with player
@@ -69,7 +81,7 @@ Enemy.prototype.update = function(dt) {
 
 
     //TODO: create enemies if one doesn't already exist on line (easy mode)
-
+    //createEnemy();
 
 
 }
@@ -97,10 +109,12 @@ var Player = function() {
     this.x = this.xDim * 2;
     this.y = this.yDim * 4;
 
+/*
     this.right = this.x + 83;
     this.left = this.x;
     this.top = this.y;
     this.bottom = this.y + 101;
+*/
 
     //set image for player
     this.sprite = 'images/char-boy.png';
@@ -115,26 +129,40 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
+Player.prototype.restart = function() {
+    //reset player to starting position
+    this.xDim = 101;
+    this.yDim = 83;
+
+    this.x = this.xDim * 2;
+    this.y = this.yDim * 4;
+}
+
+
 Player.prototype.handleInput = function(key) {
     if (key === 'right') {
-        //verify valid move
-        if (this.right + 101 <= 505) {
+        if (this.x < 404) {
+            console.log(this.x, this.y);
             this.x += 101;
+            console.log(this.x, this.y);
         }
     } else if (key === 'left') {
-        //verify valid move
-        if (this.left - 101 >= 0) {
+        if (this.x > 0) {
+            console.log(this.x, this.y);
             this.x -= 101;
+            console.log(this.x, this.y);
         }
     } else if (key === 'up') {
-        //verify valid move
-        if (this.top - 83 >= 83) {
+        if (this.y > 83) {
+            console.log(this.x, this.y);
             this.y -= 83;
+            console.log(this.x, this.y);
         }
     } else if (key === 'down') {
-        //verify valid move
-        if (this.y + 83 <= 606) {
+        if (this.y < 415) {
+            console.log(this.x, this.y);
             this.y += 83;
+            console.log(this.x, this.y);
         }
     }
 };
@@ -151,12 +179,12 @@ Player.prototype.handleInput = function(key) {
 
 var allEnemies = [];
 
-
+/*
 for (var i=0; i < 8; i++) {
     var enemy = new Enemy();
     allEnemies.push(enemy);
 }
-
+*/
 
 
 // Place the player object in a variable called player
