@@ -5,31 +5,22 @@ var getRandInt = function(a, b) {
 
 var checkCollisions = function() {
     allEnemies.forEach(function(enemy){
-
-        /*
-        if (enemy.left < player.right &&
+        if(enemy.left < player.right &&
             enemy.right > player.left &&
             enemy.top < player.bottom &&
             enemy.bottom > player.top) {
                 Player.restart();
         }
-        */
-
-        if (enemy.x < player.x + 50 &&
-            enemy.x + 50 > player.x &&
-            enemy.y < player.y + 50 &&
-            enemy.y + 50 > player.y) {
-                player.restart();
-        }
     });
 }
 
-/*
+
 var createEnemy = function() {
     var enemy = new Enemy();
     allEnemies.push(enemy);
 }
-*/
+
+
 
 //////////////////////////////////////////////////////////////////////
 
@@ -44,15 +35,13 @@ var Enemy = function() {
     this.road = getRandInt(1, 3);
 
     //set enemy starting (x,y) coordinates
-    this.x = getRandInt(0, 202);
+    this.x = getRantInt(0, -202);
     this.y = this.road * 83;
 
-/*
     this.right = this.x + 83;
     this.left = this.x;
     this.top = this.y;
     this.bottom = this.y + 101;
-*/
 
     //pick a speed for enemy
     this.speed = getRandInt(40, 120);
@@ -60,15 +49,8 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-
 }
 
-/*
-Enemy.prototype.makeEnemy = function() {
-    var enemy = new Enemy();
-    allEnemies.push(enemy);
-}
-*/
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -76,13 +58,21 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    //makeEnemy();
     this.x += this.speed * dt;
+
     //TODO: handle collisions with player
-    //done already in engine.js(?)
+    checkCollisions();
+
+
+
+
     //TODO: limit number of enemies generated per row
+
+
     //TODO: create enemies if one doesn't already exist on line (easy mode)
-    //createEnemy();
+    createEnemy();
+
+
 }
 
 // Draw the enemy on the screen, required method for game
@@ -108,12 +98,10 @@ var Player = function() {
     this.x = this.xDim * 2;
     this.y = this.yDim * 4;
 
-/*
     this.right = this.x + 83;
     this.left = this.x;
     this.top = this.y;
     this.bottom = this.y + 101;
-*/
 
     //set image for player
     this.sprite = 'images/char-boy.png';
@@ -140,32 +128,28 @@ Player.prototype.restart = function() {
 
 Player.prototype.handleInput = function(key) {
     if (key === 'right') {
-        if (this.x < 404) {
-            console.log(this.x, this.y);
+        //verify valid move
+        if (this.right + 101 <= 505) {
+            console.log(this.x);
             this.x += 101;
-            console.log(this.x, this.y);
         }
     } else if (key === 'left') {
-        if (this.x > 0) {
-            console.log(this.x, this.y);
+        //verify valid move
+        if (this.left - 101 >= 0) {
+            console.log(this.x);
             this.x -= 101;
-            console.log(this.x, this.y);
         }
     } else if (key === 'up') {
-        //TODO: check for collisions before restarting
-        if (this.y < 166) {
+        //verify valid move
+        if (this.top - 83 >= 83) {
+            console.log(this.right);
             this.y -= 83;
-            this.restart();
-        } else if (this.y > 83) {
-            console.log(this.x, this.y);
-            this.y -= 83;
-            console.log(this.x, this.y);
         }
     } else if (key === 'down') {
-        if (this.y < 415) {
-            console.log(this.x, this.y);
+        //verify valid move
+        if (this.y + 83 <= 606) {
+            console.log(this.right);
             this.y += 83;
-            console.log(this.x, this.y);
         }
     }
 };
@@ -181,8 +165,6 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies
 
 var allEnemies = [];
-var enemy = new Enemy();
-
 
 /*
 for (var i=0; i < 8; i++) {
