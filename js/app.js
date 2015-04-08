@@ -184,12 +184,12 @@ var allEnemies = [];
 var enemy = new Enemy();
 
 
-/*
-for (var i=0; i < 8; i++) {
+
+for (var i = 0; i < 8; i++) {
     var enemy = new Enemy();
     allEnemies.push(enemy);
 }
-*/
+
 
 
 // Place the player object in a variable called player
