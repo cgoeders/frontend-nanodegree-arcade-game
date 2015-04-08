@@ -1,0 +1,9 @@
+P3 References
+
+--Front-End ND (December 2014) cohort discussion forums (please note: these pages are no longer available to me as I have been moved to the February 2015 cohort)
+--Object-Oriented Javascript course (Udacity)
+--HTML5 Canvas course (Udacity)
+--old HTML course on game creation (provided in discussion forum); described how to check for collisions
+--Udacity Office Hours: getting started on P3, debugging with Chrome Dev Tools, additional guidelines (Google Doc) provided in transcript
+--W3Schools Javascript tutorials
+--MDN: introduction to object-oriented Javascript
