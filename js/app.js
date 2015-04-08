@@ -44,8 +44,8 @@ var Enemy = function() {
     this.road = getRandInt(1, 3);
 
     //set enemy starting (x,y) coordinates
-    this.x = getRandInt(0, 202);
-    this.y = this.road * 83;
+    this.x = getRandInt(0, -505);
+    this.y = this.road * 75;
 
 /*
     this.right = this.x + 83;
@@ -55,7 +55,7 @@ var Enemy = function() {
 */
 
     //pick a speed for enemy
-    this.speed = getRandInt(40, 120);
+    this.speed = getRandInt(50, 150);
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -83,6 +83,15 @@ Enemy.prototype.update = function(dt) {
     //TODO: limit number of enemies generated per row
     //TODO: create enemies if one doesn't already exist on line (easy mode)
     //createEnemy();
+
+    //when enemy moves off screen, re-initiate for-loop to generate more enemy
+    //call method..
+
+    if (this.x > 505) {
+        this.x = -303;
+    }
+
+
 }
 
 // Draw the enemy on the screen, required method for game
@@ -103,7 +112,7 @@ var Player = function() {
     //to determine starting position, and
     //set starting (x,y) coordinates
     this.xDim = 101;
-    this.yDim = 83;
+    this.yDim = 80;
 
     this.x = this.xDim * 2;
     this.y = this.yDim * 4;
@@ -131,7 +140,7 @@ Player.prototype.render = function() {
 Player.prototype.restart = function() {
     //reset player to starting position
     this.xDim = 101;
-    this.yDim = 83;
+    this.yDim = 80;
 
     this.x = this.xDim * 2;
     this.y = this.yDim * 4;
@@ -153,7 +162,7 @@ Player.prototype.handleInput = function(key) {
         }
     } else if (key === 'up') {
         //TODO: check for collisions before restarting
-        if (this.y < 166) {
+        if (this.y < 150) {
             this.y -= 83;
             this.restart();
         } else if (this.y > 83) {
@@ -162,7 +171,7 @@ Player.prototype.handleInput = function(key) {
             console.log(this.x, this.y);
         }
     } else if (key === 'down') {
-        if (this.y < 415) {
+        if (this.y < 375) {
             console.log(this.x, this.y);
             this.y += 83;
             console.log(this.x, this.y);
@@ -184,7 +193,7 @@ var allEnemies = [];
 var enemy = new Enemy();
 
 
-
+//method
 for (var i = 0; i < 8; i++) {
     var enemy = new Enemy();
     allEnemies.push(enemy);
