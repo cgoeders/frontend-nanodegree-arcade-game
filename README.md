@@ -19,4 +19,5 @@ Enemy bugs will move on their own at variable speeds across the
 roads. To move your player, use the arrow keys (left, right, up,
 and down).
 
-In order to run this game, open the index.html file.
+To run this game, navigate to this page:
+http://cgoeders.github.io/frontend-nanodegree-arcade-game/
